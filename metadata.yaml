@@ -1,5 +1,5 @@
 homepage: "https://www.linkedin.com/in/tracking-specialist/"
 documentation: "https://github.com/tracking-with-bahar/Base64-converter"
 versions:
-  - sha: 6d1b7b2f623b7530c7a0faf66c91a5d247700e21
+  - sha: e08e8ab9652045b2a2b24760e36aff2b84b4d101
     changeNotes: Initial release.
