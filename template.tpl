@@ -1,4 +1,4 @@
-﻿___TERMS_OF_SERVICE___
+___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -13,7 +13,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Base64 converter",
+  "displayName": "Encode/Decode Converter",
   "description": "",
   "containerContexts": [
     "WEB"
@@ -26,16 +26,32 @@ ___TEMPLATE_PARAMETERS___
 [
   {
     "type": "RADIO",
-    "name": "radioButton",
-    "displayName": "",
+    "name": "operationButton",
+    "displayName": "Operation",
     "radioItems": [
       {
-        "value": "fromBase64",
-        "displayValue": "fromBase64"
+        "value": "encode",
+        "displayValue": "Encode"
       },
       {
-        "value": "toBase64",
-        "displayValue": "toBase64"
+        "value": "decode",
+        "displayValue": "Decode"
+      }
+    ],
+    "simpleValueType": true
+  },
+  {
+    "type": "RADIO",
+    "name": "texttype",
+    "displayName": "Data Type",
+    "radioItems": [
+      {
+        "value": "text",
+        "displayValue": "Text"
+      },
+      {
+        "value": "json",
+        "displayValue": "JSON"
       }
     ],
     "simpleValueType": true
@@ -43,7 +59,7 @@ ___TEMPLATE_PARAMETERS___
   {
     "type": "TEXT",
     "name": "text",
-    "displayName": "value",
+    "displayName": "Input Text",
     "simpleValueType": true
   }
 ]
@@ -51,9 +67,25 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
+const JSON = require('JSON');
 const fromBase64 = require('fromBase64');
 const toBase64 = require('toBase64');
-return data.radioButton === "fromBase64" ? fromBase64(data.text) : toBase64(data.text);
+
+if (data.operationButton === "encode" && data.texttype === "text") {
+  return toBase64(data.text);
+}
+
+if (data.operationButton === "decode" && data.texttype === "text") {
+  return fromBase64(data.text);
+}
+
+if (data.operationButton === "encode" && data.texttype === "json") {
+  return toBase64(JSON.stringify(data.text));
+}
+
+if (data.operationButton === "decode" && data.texttype === "json") {
+  return JSON.parse(fromBase64(data.text));
+}
 
 
 ___TESTS___
@@ -63,6 +95,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 8/13/2026, 8:23:39 PM
+Created on 8/13/2026, 11:01:25 PM
 
 
