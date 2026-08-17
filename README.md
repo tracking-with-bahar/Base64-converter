@@ -1,4 +1,4 @@
-# Base64 Encoder / Decoder
+# Encode/Decode Converter
 
 A Google Tag Manager Variable Template for encoding and decoding Base64.
 
