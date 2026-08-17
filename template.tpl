@@ -71,6 +71,8 @@ const JSON = require('JSON');
 const fromBase64 = require('fromBase64');
 const toBase64 = require('toBase64');
 
+if(!data.text) return;
+
 if (data.operationButton === "encode" && data.texttype === "text") {
   return toBase64(data.text);
 }
